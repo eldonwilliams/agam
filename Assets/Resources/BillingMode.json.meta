@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9cc5756bb42a94b13ae22661b34300a9
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 
+  assetPath: Assets/Resources/BillingMode.json
+  uploadId: 0
