@@ -68,6 +68,10 @@ public class TilemapManager : MonoBehaviour
         if (tileData.Material.defaultHealth < 0)
             return;
         
+        // If the tile is already dead, return
+        if (tileData.Health <= 0.0f)
+            return;
+        
         tileData.Health = Math.Max(0, tileData.Health - amount);
         OnTileDamaged.Invoke(pos, tileData);
     }
