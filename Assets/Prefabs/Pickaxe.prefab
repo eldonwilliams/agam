@@ -136,10 +136,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   hitClip: {fileID: 8300000, guid: 12d9073782b3e425794b6200dd52e915, type: 3}
   slingAction: {fileID: 8287823416190214651, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  maxSlingDistance: 10
-  minSlingDistance: 1
-  forcePerUnitDistance: 2
+  joystickElement: {fileID: 1468357727878230956, guid: f521fd60a8bd64e52bc6fea57a2fe2a6, type: 3}
+  uiDotElement: {fileID: 5608888850693438792, guid: 487652e54127148b380aa7421a7942a9, type: 3}
+  maxSlingDistance: 450
+  minSlingDistance: 25
+  forcePerUnitDistance: 0.0195
   directionPreviewOffset: 142.5
+  uiDotCount: 10
+  uiDotTimeDelta: 0.1
 --- !u!60 &307063785458404337
 PolygonCollider2D:
   m_ObjectHideFlags: 0

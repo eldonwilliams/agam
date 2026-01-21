@@ -14,6 +14,7 @@ public class JoystickUIController : MonoBehaviour
 
     public void UpdateKnob(Vector2 screenKnobPosition)
     {
-        _rectTransform.position = screenKnobPosition;
+        if (_rectTransform)
+            _rectTransform.position = screenKnobPosition;
     }
 }

@@ -10,16 +10,24 @@ public class DestroyOnHit : MonoBehaviour
 {
     public AudioClip hitClip;
     public InputActionReference slingAction;
+    public GameObject joystickElement;
+    public GameObject uiDotElement;
     public float maxSlingDistance = 10f;
     public float minSlingDistance = 1f;
     public float forcePerUnitDistance = 1f;
     public float directionPreviewOffset = 220f;
+    public int uiDotCount = 6;
+    public float uiDotTimeDelta = 0.25f;
     
+    private Transform _canvas;
     private TilemapManager _manager;
     private Rigidbody2D _rigidbody2D;
     private AudioSource _soundEffect;
     private CircleCollider2D _circleCollider2D;
     private bool _isSlinging = false;
+    private JoystickUIController _joystickUIController;
+    private Transform[] _uiDotsTransform;
+    private Vector2 _startSlingPosition;
     private Camera _cam;
 
     private void Start()
@@ -29,6 +37,7 @@ public class DestroyOnHit : MonoBehaviour
         _soundEffect = transform.AddComponent<AudioSource>();
         _soundEffect.clip = hitClip;
         _circleCollider2D = GetComponent<CircleCollider2D>();
+        _canvas = FindFirstObjectByType<Canvas>().transform;
         _cam = Camera.main;
     }
 
@@ -42,45 +51,92 @@ public class DestroyOnHit : MonoBehaviour
         slingAction.action.performed -= OnSlingAction;
     }
 
+    /**
+     * Calculates the estimated position of the slung pickaxe in x time
+     * assumes v0 is 0 and there is no obsticles
+     * TODO: Implement a raycast for more accurate, (i.e. hit a object stop the t at p(f)
+     */
+    private Vector2 CalculateEstimatedPosition(float t)
+    {
+        var mass = _rigidbody2D.mass;
+        var acceleration = CalculateSlingForce() / mass;
+        var g = Physics2D.gravity * _rigidbody2D.gravityScale;
+        var position = _rigidbody2D.position;
+        position += g * (0.5f * (float)Math.Pow(t, 2));
+        position += (_rigidbody2D.linearVelocity + acceleration) * t;
+        return position;
+    }
+
+    private Vector2 CalculateSlingForce()
+    {
+        var pointerPosition = Pointer.current.position.ReadValue();
+        var force = forcePerUnitDistance * Math.Min(Vector2.Distance(_startSlingPosition, pointerPosition), maxSlingDistance);;
+        var direction = (pointerPosition - _startSlingPosition).normalized;
+        return -direction * force;
+    }
+
     private void OnSlingAction(InputAction.CallbackContext ctx)
     {
         if (!_rigidbody2D) return;
         _isSlinging = ctx.ReadValueAsButton();
-        if (_isSlinging) _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        if (_isSlinging)
+        {
+            _startSlingPosition = Pointer.current.position.ReadValue();
+            var joystick = Instantiate(joystickElement, _canvas.transform).transform;
+            joystick.position = (Vector2) _cam.ScreenToWorldPoint(_startSlingPosition);
+            _joystickUIController = joystick.GetComponent<JoystickUIController>();
+            _uiDotsTransform = new Transform[uiDotCount];
+            for (int i = 0; i < uiDotCount; i++)
+            {
+                var dotTransform = Instantiate(uiDotElement, _canvas.transform).transform;
+                _uiDotsTransform[i] = dotTransform;
+            }
+            _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 
     private void Update()
     {
-        Vector3 worldPos;
+        var pointerPosition = Pointer.current.position.ReadValue();
         
         if (!_isSlinging)
         {
             if (_rigidbody2D.constraints == RigidbodyConstraints2D.None) return;
+            // Clean up
+            
+            Destroy(_joystickUIController.gameObject);
+            foreach (var uiDot in _uiDotsTransform)
+            {
+                Destroy(uiDot.gameObject);
+            }
+            
             // Do the sling
-
-            worldPos = _cam.ScreenToWorldPoint(Pointer.current.position.ReadValue());
-            worldPos.z = 0;
-            var dist = Math.Min(Vector2.Distance(_rigidbody2D.position, worldPos), maxSlingDistance);
+            var dist = Math.Min(Vector2.Distance(_startSlingPosition, pointerPosition), maxSlingDistance);
             if (dist < minSlingDistance)
             {
                 _rigidbody2D.constraints = RigidbodyConstraints2D.None;
                 return;
             }
-
-            var force = forcePerUnitDistance * dist;
-            var direction = ((Vector2) worldPos - _rigidbody2D.position).normalized;
-            var forceVector = -direction * force;
+            var forceVector = CalculateSlingForce();
             _rigidbody2D.constraints = RigidbodyConstraints2D.None;
             _rigidbody2D.AddForce(forceVector, ForceMode2D.Impulse);
             return;
         }
         
-        worldPos = _cam.ScreenToWorldPoint(Pointer.current.position.ReadValue());
-        var directionAngle = Mathf.Atan2(worldPos.y - _rigidbody2D.position.y, worldPos.x - _rigidbody2D.position.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, directionAngle + directionPreviewOffset);
-        
         // Update Graphics, we are actively slinging
         // Nothing physics is done until the sling is terminated.
+
+        var directionAngle = Mathf.Atan2(pointerPosition.y - _startSlingPosition.y, pointerPosition.x - _startSlingPosition.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, directionAngle + directionPreviewOffset);
+        
+        if (_joystickUIController)
+            _joystickUIController.UpdateKnob(_cam.ScreenToWorldPoint(_startSlingPosition + Vector2.ClampMagnitude(pointerPosition - _startSlingPosition, maxSlingDistance)));
+
+        for (int i = 0; i < _uiDotsTransform.Length; i++)
+        {
+            var uiDot = _uiDotsTransform[i];
+            uiDot.transform.position = CalculateEstimatedPosition((i + 1) * uiDotTimeDelta);
+        }
     }
 
 
