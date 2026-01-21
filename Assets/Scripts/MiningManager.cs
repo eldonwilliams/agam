@@ -50,7 +50,7 @@ public class MiningManager : MonoBehaviour
     {
         if (!_manager.IsTileDead(pos)) return;
         var instance = Instantiate(moneyEffectPrefab, transform);
-        var worldPos = _manager.CellToWorld(pos);
+        var worldPos = _manager.CellCenterToWorld(pos);
         instance.transform.position = worldPos;
         var start = instance.transform.position;
         LeanTween.value(instance, 0.0f, 1.0f, 1.0f).setEase(LeanTweenType.easeInOutCubic).setOnComplete(() =>
