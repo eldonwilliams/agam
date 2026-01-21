@@ -58,7 +58,6 @@ public class DestroyOnHit : MonoBehaviour
             if (_rigidbody2D.constraints == RigidbodyConstraints2D.None) return;
             // Do the sling
 
-
             worldPos = _cam.ScreenToWorldPoint(Pointer.current.position.ReadValue());
             worldPos.z = 0;
             var dist = Math.Min(Vector2.Distance(_rigidbody2D.position, worldPos), maxSlingDistance);
