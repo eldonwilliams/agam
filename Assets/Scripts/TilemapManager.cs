@@ -119,7 +119,7 @@ public class TilemapManager : MonoBehaviour
         var particleSystem = breakParticles.GetComponent<ParticleSystem>();
         particleSystem.GetComponent<ParticleSystemRenderer>().material = FetchBreakMaterial(tileData.Material);
         particleSystem.Play();
-        Destroy(particleSystem, 5.0f);
+        Destroy(breakParticles, 5.0f);
     }
 
     public void ShouldDamagedCellBeDestroyed(Vector2Int pos, TileData tileData)
