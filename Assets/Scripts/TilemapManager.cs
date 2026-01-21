@@ -92,6 +92,11 @@ public class TilemapManager : MonoBehaviour
         return _tilemap.CellToWorld(new Vector3Int(cell.x, cell.y, 0));
     }
 
+    public Vector3 CellCenterToWorld(Vector2Int cell)
+    {
+        return _tilemap.GetCellCenterWorld(new Vector3Int(cell.x, cell.y));
+    }
+
     public bool IsTileDead(Vector2Int cell)
     {
         return GetData(cell)?.Health <= 0f;
