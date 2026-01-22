@@ -81,6 +81,7 @@ public class TilemapManager : MonoBehaviour
      */
     public void PlaceMaterial(Vector2Int pos, MaterialBase material)
     {
+        if (!material) return;
         SetData(pos, material);
         _tilemap.SetTile(new Vector3Int(pos.x, pos.y), material.tile);
     }
