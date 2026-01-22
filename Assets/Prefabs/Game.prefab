@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5150926409116774856}
   - component: {fileID: 95485493278054852}
   - component: {fileID: 4992847110140663214}
+  - component: {fileID: 7169679878933366210}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -79,3 +80,19 @@ MonoBehaviour:
   moneyEffectPrefab: {fileID: 5511656816475794932, guid: 8df5aeb21add8428abae055dc73a07ce, type: 3}
   moneyCounter: {fileID: 0}
   moneyIncrementAudio: {fileID: 8300000, guid: 98c08f2a09f164f1482270c0e4126a64, type: 3}
+--- !u!114 &7169679878933366210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856151745957749723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da18c71e17b334828b74f4d272775465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainGenerator
+  chunkSize: 16
+  paddingChunks: 2
+  bedrockWallPosition: 10
+  materialRegistry: {fileID: 11400000, guid: 61fc7a53df36e4cb3901a7477cc0606e, type: 2}
