@@ -650,7 +650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 644816617}
-  offset: {x: 0, y: 1, z: -10}
+  offset: {x: 0, y: -3, z: -10}
+  deflection: {x: 0, y: 0, z: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,6 +1207,14 @@ PrefabInstance:
       propertyPath: placeAction
       value: 
       objectReference: {fileID: 360477220}
+    - target: {fileID: 7169679878933366210, guid: 6d4b85eb809eb4201a3d724f09774f29, type: 3}
+      propertyPath: chunkSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169679878933366210, guid: 6d4b85eb809eb4201a3d724f09774f29, type: 3}
+      propertyPath: perlinMapSize
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
