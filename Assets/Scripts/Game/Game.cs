@@ -65,47 +65,47 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        float height = _cam.orthographicSize * 2f;
-        float width = height * _cam.aspect;
-
-        Vector3 camCenter = _cam.transform.position;
-
-        Vector3 bottomLeft = camCenter + new Vector3(-width / 2f, -height / 2f, 0);
-        Vector3 topRight   = camCenter + new Vector3( width / 2f,  height / 2f, 0);
-        
-        Vector3Int minCell = _tilemap.WorldToCell(bottomLeft);
-        Vector3Int maxCell = _tilemap.WorldToCell(topRight);
-        
-        for (int x = minCell.x; x <= maxCell.x; x++)
-        {
-            if (x < -boundsX || x > boundsX)
-            {
-                for (int y = minCell.y; y <= maxCell.y; y++)
-                {
-                    Vector3Int cellPos = new Vector3Int(x, y, 0);
-
-                    if (_manager.HasData(new Vector2Int(x, y))) continue;
-                
-                    if (!_tilemap.HasTile(cellPos))
-                    {
-                        _manager.PlaceMaterial(new Vector2Int(x, y), materialRegistry.materials[2]);
-                    }
-                }
-                continue;
-            }
-            
-            for (int y = minCell.y; y <= Math.Min(0, maxCell.y); y++)
-            {
-                Vector3Int cellPos = new Vector3Int(x, y, 0);
-
-                if (_manager.HasData(new Vector2Int(x, y))) continue;
-                
-                if (!_tilemap.HasTile(cellPos))
-                {
-                    _manager.PlaceMaterial(new Vector2Int(x, y), materialRegistry.materials[y == 0 ? 0 : 1]);
-                }
-            }
-        }
+        // float height = _cam.orthographicSize * 2f;
+        // float width = height * _cam.aspect;
+        //
+        // Vector3 camCenter = _cam.transform.position;
+        //
+        // Vector3 bottomLeft = camCenter + new Vector3(-width / 2f, -height / 2f, 0);
+        // Vector3 topRight   = camCenter + new Vector3( width / 2f,  height / 2f, 0);
+        //
+        // Vector3Int minCell = _tilemap.WorldToCell(bottomLeft);
+        // Vector3Int maxCell = _tilemap.WorldToCell(topRight);
+        //
+        // for (int x = minCell.x; x <= maxCell.x; x++)
+        // {
+        //     if (x < -boundsX || x > boundsX)
+        //     {
+        //         for (int y = minCell.y; y <= maxCell.y; y++)
+        //         {
+        //             Vector3Int cellPos = new Vector3Int(x, y, 0);
+        //
+        //             if (_manager.HasData(new Vector2Int(x, y))) continue;
+        //         
+        //             if (!_tilemap.HasTile(cellPos))
+        //             {
+        //                 _manager.PlaceMaterial(new Vector2Int(x, y), materialRegistry.materials[2]);
+        //             }
+        //         }
+        //         continue;
+        //     }
+        //     
+        //     for (int y = minCell.y; y <= Math.Min(0, maxCell.y); y++)
+        //     {
+        //         Vector3Int cellPos = new Vector3Int(x, y, 0);
+        //
+        //         if (_manager.HasData(new Vector2Int(x, y))) continue;
+        //         
+        //         if (!_tilemap.HasTile(cellPos))
+        //         {
+        //             _manager.PlaceMaterial(new Vector2Int(x, y), materialRegistry.materials[y == 0 ? 0 : 1]);
+        //         }
+        //     }
+        // }
 
     }
 }
