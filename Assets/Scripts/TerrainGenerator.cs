@@ -9,13 +9,16 @@ public class TerrainGenerator : MonoBehaviour
     public int paddingChunks = 2;
     public int bedrockWallPosition = 10;
     public MaterialRegistry materialRegistry;
+    public float perlinMapSize = 25f;
     
     // A list of currently loaded chunks
     private readonly HashSet<Vector2Int> _loadedChunks = new();
     private TilemapManager _tilemapManager;
+    private Vector2 _seed;
 
     private void Start()
     {
+        _seed = Random.insideUnitSphere;
         _tilemapManager = FindFirstObjectByType<TilemapManager>();
     }
 
@@ -85,10 +88,16 @@ public class TerrainGenerator : MonoBehaviour
         // This is the logic that truly will control terrain generation
         // This is a major feat for the future, currently the bedrock material will be generated at the sides and the rest is a layer of dirt and stone to infinity
 
+        
+        
         if (Mathf.Abs(tilemapPosition.x) == bedrockWallPosition)
             return materialRegistry.materials[2];
 
-        return tilemapPosition.y > 0 || Mathf.Abs(tilemapPosition.x) > bedrockWallPosition ? null : materialRegistry.materials[tilemapPosition.y == 0 ? 0 : 1];
+        if (tilemapPosition.y > 0 || Mathf.Abs(tilemapPosition.x) > bedrockWallPosition)
+            return null;
+
+        var perlinNoiseValue = Mathf.PerlinNoise(tilemapPosition.x / perlinMapSize + _seed.x, tilemapPosition.y / perlinMapSize + _seed.y);
+        return materialRegistry.materials[perlinNoiseValue <= 0.2f ? 0 : 1];
     }
 
     public Vector2Int ChunkToTilemap(Vector2Int chunk)
