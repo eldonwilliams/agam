@@ -18,7 +18,8 @@ public class DestroyOnHit : MonoBehaviour
     public float directionPreviewOffset = 220f;
     public int uiDotCount = 6;
     public float uiDotTimeDelta = 0.25f;
-    
+
+    private FollowCamera _cameraController;
     private Transform _canvas;
     private TilemapManager _manager;
     private Rigidbody2D _rigidbody2D;
@@ -39,6 +40,8 @@ public class DestroyOnHit : MonoBehaviour
         _circleCollider2D = GetComponent<CircleCollider2D>();
         _canvas = FindFirstObjectByType<Canvas>().transform;
         _cam = Camera.main;
+        if (_cam)
+            _cameraController = _cam.GetComponent<FollowCamera>();
     }
 
     private void OnEnable()
@@ -103,6 +106,8 @@ public class DestroyOnHit : MonoBehaviour
         {
             if (_rigidbody2D.constraints == RigidbodyConstraints2D.None) return;
             // Clean up
+
+            _cameraController.deflection = Vector3.zero;
             
             Destroy(_joystickUIController.gameObject);
             foreach (var uiDot in _uiDotsTransform)
@@ -127,7 +132,12 @@ public class DestroyOnHit : MonoBehaviour
         // Nothing physics is done until the sling is terminated.
 
         var directionAngle = Mathf.Atan2(pointerPosition.y - _startSlingPosition.y, pointerPosition.x - _startSlingPosition.x) * Mathf.Rad2Deg;
+        var magitude = Vector2.Distance(pointerPosition, _startSlingPosition);
         transform.rotation = Quaternion.Euler(0f, 0f, directionAngle + directionPreviewOffset);
+        
+        _cameraController.deflection = new Vector3(Mathf.Cos((directionAngle - 180f) * Mathf.Deg2Rad) * magitude / 350f,
+            Mathf.Sin((directionAngle - 180f) * Mathf.Deg2Rad) * magitude / 350f,
+            0);
         
         if (_joystickUIController)
             _joystickUIController.UpdateKnob(_cam.ScreenToWorldPoint(_startSlingPosition + Vector2.ClampMagnitude(pointerPosition - _startSlingPosition, maxSlingDistance)));
