@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6673755665277694756}
   - component: {fileID: 5555849123922625346}
   - component: {fileID: 2501589760186368067}
-  - component: {fileID: 1879847460132181917}
   - component: {fileID: 307063785458404337}
   - component: {fileID: 6773049265548534605}
+  - component: {fileID: 1879847460132181917}
   - component: {fileID: 8928035753660087903}
+  - component: {fileID: 2741553226069427763}
   m_Layer: 0
   m_Name: Pickaxe
   m_TagString: Untagged
@@ -123,28 +124,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1879847460132181917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2772288357326102895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e94a9fe53b1c4a4d9a9eeaa6abc6d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  hitClip: {fileID: 8300000, guid: 12d9073782b3e425794b6200dd52e915, type: 3}
-  slingAction: {fileID: 8287823416190214651, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  joystickElement: {fileID: 1468357727878230956, guid: f521fd60a8bd64e52bc6fea57a2fe2a6, type: 3}
-  uiDotElement: {fileID: 5608888850693438792, guid: 487652e54127148b380aa7421a7942a9, type: 3}
-  maxSlingDistance: 450
-  minSlingDistance: 25
-  forcePerUnitDistance: 0.0195
-  directionPreviewOffset: 142.5
-  uiDotCount: 10
-  uiDotTimeDelta: 0.1
 --- !u!60 &307063785458404337
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -240,6 +219,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.125
+--- !u!114 &1879847460132181917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772288357326102895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e94a9fe53b1c4a4d9a9eeaa6abc6d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  hitClip: {fileID: 8300000, guid: 12d9073782b3e425794b6200dd52e915, type: 3}
 --- !u!114 &8928035753660087903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,3 +244,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bdad074dbf94d90a86672727124db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkLoader
+--- !u!114 &2741553226069427763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772288357326102895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8928c71ba42b48cdb272ec65bd61efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlingableObject
+  joystickElement: {fileID: 1468357727878230956, guid: f521fd60a8bd64e52bc6fea57a2fe2a6, type: 3}
+  uiDotElement: {fileID: 5608888850693438792, guid: 487652e54127148b380aa7421a7942a9, type: 3}
+  maxSlingDistance: 450
+  minSlingDistance: 25
+  forcePerUnitDistance: 0.0195
+  directionPreviewOffset: 142.5
+  uiDotCount: 10
+  uiDotTimeDelta: 0.1
