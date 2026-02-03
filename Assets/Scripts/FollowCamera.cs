@@ -6,6 +6,7 @@ public class FollowCamera : MonoBehaviour
     public Transform target;
     public Vector3 offset;
     public Vector3 deflection;
+    public float speed = 3.5f;
 
     private Camera _camera;
     private float _startingCamSize;
@@ -34,6 +35,6 @@ public class FollowCamera : MonoBehaviour
             _camera.orthographicSize = _startingCamSize;
         }
         
-        transform.position = Vector3.Lerp(transform.position, target.position + offset + deflection, Time.deltaTime * 2f);
+        transform.position = Vector3.Lerp(transform.position, target.position + offset + deflection, Time.deltaTime * speed);
     }
 }
