@@ -519,6 +519,34 @@
             ]
         },
         {
+            "name": "PickaxeSling",
+            "id": "c55d8dc1-c09c-4096-a35c-d81ad0430992",
+            "actions": [
+                {
+                    "name": "BeginSling",
+                    "type": "Button",
+                    "id": "b4635c39-4a2c-478b-989b-5d79a41d5f3a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "82a04408-5b10-4c95-acbb-f97d89e1cfe6",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "BeginSling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Begin",
             "id": "1ecaacb8-3c22-48f2-9f48-444efc8928b6",
             "actions": [
@@ -528,7 +556,7 @@
                     "id": "6a93f75a-2415-4dad-9c05-5a4cd8911bf2",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -539,36 +567,8 @@
                     "path": "<Pointer>/press",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Touch",
+                    "groups": ";Touch;Keyboard&Mouse",
                     "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PickaxeSling",
-            "id": "fd759c37-5bd1-4829-bca5-3fef29cc2624",
-            "actions": [
-                {
-                    "name": "BeginSling",
-                    "type": "Button",
-                    "id": "340ea944-9945-409a-966b-6c55fd61e917",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "feaf6833-3b5d-418c-8976-e5983534a37e",
-                    "path": "<Pointer>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "BeginSling",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

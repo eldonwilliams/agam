@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class DestroyOnHit : MonoBehaviour
 {
     public AudioClip hitClip;
-    public InputActionReference slingAction;
     public GameObject joystickElement;
     public GameObject uiDotElement;
     public float maxSlingDistance = 10f;
@@ -30,6 +29,7 @@ public class DestroyOnHit : MonoBehaviour
     private Transform[] _uiDotsTransform;
     private Vector2 _startSlingPosition;
     private Camera _cam;
+    private InputAction _slingAction;
 
     private void Start()
     {
@@ -42,18 +42,10 @@ public class DestroyOnHit : MonoBehaviour
         _cam = Camera.main;
         if (_cam)
             _cameraController = _cam.GetComponent<FollowCamera>();
+        _slingAction = InputManager.SlingPickaxe;
+        _slingAction.performed += OnSlingAction;
     }
-
-    private void OnEnable()
-    {
-        slingAction.action.performed += OnSlingAction;
-    }
-
-    private void OnDisable()
-    {
-        slingAction.action.performed -= OnSlingAction;
-    }
-
+    
     /**
      * Calculates the estimated position of the slung pickaxe in x time
      * assumes v0 is 0 and there is no obsticles
