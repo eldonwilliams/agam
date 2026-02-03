@@ -1,0 +1,71 @@
+:root {
+}
+
+.logo-hidden {
+    translate: 0 -100%;
+    scale: 0.8 0.8;
+}
+
+.logo {
+    transition-duration: 1s;
+    transition-property: translate;
+    transition-timing-function: ease-in-circ;
+}
+
+.background-hidden {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    transform-origin: bottom;
+    scale: 0 0;
+}
+
+.background {
+}
+
+.button {
+    background-image: url("project://database/Assets/Textures/UIButton9Slice.png?fileID=21300000&guid=57e4caf4448ac4936b02efa13d962388&type=3#UIButton9Slice");
+    background-color: rgba(255, 4, 4, 0);
+    -unity-slice-type: tiled;
+    background-repeat: repeat repeat;
+    font-size: 100%;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    margin-bottom: 24px;
+    transition-duration: 0.5s, 0.15s, 0.15s;
+    transition-timing-function: ease-out-back, ease-in-out-cubic, ease-in-out-cubic;
+    opacity: 1;
+    scale: 1 1;
+    translate: 0 0;
+    transition-delay: 0.5s, 0s, 0s;
+    transition-property: all, -unity-background-image-tint-color, scale;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.button:active {
+    scale: 0.9 0.9;
+    -unity-background-image-tint-color: rgb(226, 226, 226);
+}
+
+.button-hidden {
+    translate: 100px 0;
+    opacity: 0;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out-back;
+    transition-delay: 0.5s;
+}
+
+.shake {
+    transition-property: translate;
+    transition-duration: 60ms;
+    transition-timing-function: ease-in-out;
+}
+
+.button-inactive {
+    -unity-background-image-tint-color: rgb(154, 154, 154);
+}
