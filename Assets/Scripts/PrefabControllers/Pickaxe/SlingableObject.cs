@@ -1,29 +1,22 @@
 using System;
-using System.Collections.Generic;
-using Solo.MOST_IN_ONE;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
-public class DestroyOnHit : MonoBehaviour
+public class SlingableObject : MonoBehaviour
 {
-    public AudioClip hitClip;
     public GameObject joystickElement;
     public GameObject uiDotElement;
-    public float maxSlingDistance = 10f;
-    public float minSlingDistance = 1f;
-    public float forcePerUnitDistance = 1f;
-    public float directionPreviewOffset = 220f;
-    public int uiDotCount = 6;
-    public float uiDotTimeDelta = 0.25f;
-
+    public float maxSlingDistance = 450f;
+    public float minSlingDistance = 25f;
+    public float forcePerUnitDistance = 0.0195f;
+    public float directionPreviewOffset = 142.5f;
+    public int uiDotCount = 10;
+    public float uiDotTimeDelta = 0.1f;
+    
     private FollowCamera _cameraController;
     private Transform _canvas;
-    private TilemapManager _manager;
     private Rigidbody2D _rigidbody2D;
-    private AudioSource _soundEffect;
-    private CircleCollider2D _circleCollider2D;
     private bool _isSlinging = false;
     private JoystickUIController _joystickUIController;
     private Transform[] _uiDotsTransform;
@@ -33,11 +26,7 @@ public class DestroyOnHit : MonoBehaviour
 
     private void Start()
     {
-        _manager = FindFirstObjectByType<TilemapManager>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _soundEffect = transform.AddComponent<AudioSource>();
-        _soundEffect.clip = hitClip;
-        _circleCollider2D = GetComponent<CircleCollider2D>();
         _canvas = FindFirstObjectByType<Canvas>().transform;
         _cam = Camera.main;
         if (_cam)
@@ -139,23 +128,5 @@ public class DestroyOnHit : MonoBehaviour
             var uiDot = _uiDotsTransform[i];
             uiDot.transform.position = CalculateEstimatedPosition((i + 1) * uiDotTimeDelta);
         }
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        _soundEffect.pitch = 1.0f + Random.Range(-0.1f, 0.1f);
-        _soundEffect.Play();
-        MOST_HapticFeedback.Generate(MOST_HapticFeedback.HapticTypes.SoftImpact);
-        _rigidbody2D.AddTorque(Random.Range(-2f, 2f), ForceMode2D.Force);
-        var damagedTiles = new HashSet<Vector2Int>();
-        foreach (var contact in other.contacts)
-        {
-            var cellPos = _manager.WorldToCell(contact.point - contact.normal * 0.2f);
-            if (!damagedTiles.Add(cellPos)) continue; // Don't double damage a cell
-            _manager.DamageTile(cellPos, 1);
-            // totalNormal += contact.normal * 2;
-        }
-        // _rigidbody2D.AddForce(totalNormal, ForceMode2D.Impulse);
     }
 }
