@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=5ae0faa4232184d79bb18941daa03640&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="MainMenu" style="flex-grow: 1;">
+        <ui:Image name="logo" source="project://database/Assets/Textures/agamlogo.png?fileID=2800000&amp;guid=fd13f0e158ea54ead8375056fd755c56&amp;type=3#agamlogo" scale-mode="ScaleToFit" class="logo" style="height: 30%; align-self: center;"/>
+        <ui:VisualElement name="Background" class="background" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/UIBackground9Slice.png?fileID=21300000&amp;guid=f945a05e9e17446db973a9d152f685c9&amp;type=3#UIBackground9Slice&quot;); -unity-background-scale-mode: scale-to-fit; -unity-slice-type: tiled; height: 100%; background-repeat: repeat repeat; transition-delay: 0.25s; transition-duration: 0.75s; transition-timing-function: ease-out-back; align-self: center; align-items: center; padding-top: 24px; padding-right: 24px; padding-bottom: 24px; padding-left: 24px; -unity-background-image-tint-color: rgb(255, 255, 255); width: 100%;">
+            <ui:Button text="Play" name="PlayButton" class="button" style="font-size: 100%; -unity-text-align: middle-center;"/>
+            <ui:Button text="Settings" name="Button" class="button button-inactive" style="font-size: 100%; -unity-text-align: middle-center;"/>
+            <ui:Button text="Credits" name="Button" class="button button-inactive" style="font-size: 100%; -unity-text-align: middle-center;"/>
+            <ui:Button text="Quit" name="QuitButton" class="button" style="font-size: 100%; -unity-text-align: middle-center;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
