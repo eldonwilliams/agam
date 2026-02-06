@@ -520,12 +520,12 @@
         },
         {
             "name": "PickaxeSling",
-            "id": "c55d8dc1-c09c-4096-a35c-d81ad0430992",
+            "id": "53ed837b-844b-486e-89ce-eb17dbce911e",
             "actions": [
                 {
                     "name": "BeginSling",
                     "type": "Button",
-                    "id": "b4635c39-4a2c-478b-989b-5d79a41d5f3a",
+                    "id": "5618f331-daa6-4261-90e6-ba6099fe7fac",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
@@ -535,7 +535,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "82a04408-5b10-4c95-acbb-f97d89e1cfe6",
+                    "id": "f2d4b1ca-a10d-489d-bc66-cdf44f3f0672",
                     "path": "<Pointer>/press",
                     "interactions": "",
                     "processors": "",
