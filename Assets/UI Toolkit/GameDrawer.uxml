@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/GameDrawer.uss?fileID=7433441132597879392&amp;guid=b7cd7bb801fe340b0bd4d5f6c4419c0a&amp;type=3#GameDrawer"/>
+    <ui:ScrollView mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" touch-scroll-type="Elastic" vertical-page-size="250" style="width: 100%; height: 100%; position: absolute; top: 100%;">
+        <ui:TabView view-data-key="Upgrades" enabled="true" name="TabView" reorderable="false" style="background-image: url(&quot;project://database/Assets/Textures/UIBackground9Slice.png?fileID=21300000&amp;guid=f945a05e9e17446db973a9d152f685c9&amp;type=3#UIBackground9Slice&quot;); -unity-slice-type: tiled; width: 100%; height: 55%; background-repeat: repeat repeat; bottom: 0; position: relative; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px; left: 0; -unity-slice-scale: 1.01px; translate: 0 -80px;">
+            <ui:Tab label="Upgrades" name="UpgradesTab" closeable="false" view-data-key="Upgrades" class="tab-button">
+                <ui:Label text="Upgrades!" enable-rich-text="true"/>
+            </ui:Tab>
+            <ui:Tab label="Stats" name="StatsTab" closeable="false" view-data-key="Stats" class="tab-button">
+                <ui:Label text="Stats!"/>
+            </ui:Tab>
+            <ui:Tab label="Other" name="OtherTab" closeable="false" view-data-key="Stats" class="tab-button">
+                <ui:Label text="Stats!"/>
+            </ui:Tab>
+        </ui:TabView>
+    </ui:ScrollView>
+</ui:UXML>

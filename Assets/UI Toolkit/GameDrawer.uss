@@ -1,0 +1,70 @@
+:root {
+}
+
+.unity-tab__header {
+    background-image: url("project://database/Assets/Textures/UIButton9Slice.png?fileID=21300000&guid=57e4caf4448ac4936b02efa13d962388&type=3#UIButton9Slice");
+    background-repeat: repeat repeat;
+    -unity-background-scale-mode: scale-to-fit;
+    background-size: 100% 100%;
+    -unity-slice-type: tiled;
+    -unity-slice-scale: 0.2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-right: 5px;
+    transition-property: all;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out-back;
+}
+
+.unity-tab__header:hover {
+    -unity-background-image-tint-color: rgb(202, 202, 202);
+}
+
+.unity-tab__header:checked {
+    -unity-slice-scale: 0.3px;
+    rotate: -5deg;
+    scale: 1.1 1.1;
+    margin-right: 15px;
+    margin-left: 10px;
+    -unity-background-image-tint-color: rgb(219, 219, 219);
+}
+
+.unity-tab__header-label {
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 32px;
+}
+
+.unity-tab {
+}
+
+.unity-tab__header-underline {
+    visibility: hidden;
+}
+
+.unity-tab-view__content-container {
+}
+
+.unity-tab-view__content-viewport {
+    overflow: visible;
+}
+
+.unity-repeat-button {
+    display: none;
+    visibility: hidden;
+}
+
+.unity-scroll-view__content-container {
+    height: 200%;
+    background-size: 100% 200%;
+    overflow: visible;
+}
+
+.unity-scroll-view__content-viewport {
+    overflow: visible;
+}
+
+.unity-tab-view__content-viewport {
+    padding-top: 40px;
+}
