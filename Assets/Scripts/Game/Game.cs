@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Internal;
@@ -34,10 +36,17 @@ public class Game : MonoBehaviour
 
     private void OnPlaceAction(InputAction.CallbackContext ctx)
     {
+        StartCoroutine(OnPlaceActionCoroutine(ctx));
+    }
+    
+    private IEnumerator OnPlaceActionCoroutine(InputAction.CallbackContext ctx)
+    {
+        yield return null;
+        if (EventSystem.current.IsPointerOverGameObject()) yield break;
         var pointerPosition = Pointer.current.position.ReadValue();
         var pos = _cam.ScreenToWorldPoint(pointerPosition);
         var data = _manager.GetDataAtWorldPosition(pos);
-        if (data != null) return;
+        if (data != null) yield break;
         
         hideOnPlace.SetActive(false);
         var pickaxeInstance = Instantiate(pickaxe);

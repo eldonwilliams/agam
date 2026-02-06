@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class SlingableObject : MonoBehaviour
@@ -145,7 +147,14 @@ public class SlingableObject : MonoBehaviour
 
     private void OnSlingAction(InputAction.CallbackContext ctx)
     {
-        if (!_rigidbody2D) return;
+        StartCoroutine(OnSlingActionCoroutine(ctx));
+    }
+
+    private IEnumerator OnSlingActionCoroutine(InputAction.CallbackContext ctx)
+    {
+        yield return null;
+        if (EventSystem.current.IsPointerOverGameObject() && !_isSlinging) yield break;
+        if (!_rigidbody2D) yield break;
         _isSlinging = ctx.ReadValueAsButton();
         if (_isSlinging)
         {
